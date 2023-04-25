@@ -14,6 +14,6 @@
     height: 550px;
     padding: 15px;
     border-radius: 5px;
-    background-color: #ebebeb;
+    background-color: #fff;
 }
 </style>
