@@ -4,53 +4,25 @@
             To do
         </strong>
         <div class="status">
-            <p>TOTAL :  0</p>
+            <p>TOTAL :  {{ store.list.length }}</p>
             <p>예상 시간 : 0</p>
-            <p>미등록 : 1</p>
+            <p>미등록 : </p>
         </div>
-        <ul class="list-box" v-for="item in props.todoList" :key="item">
-            <li>
-                <h4>{{ item.title }}</h4>
-                <div>
-                    <p>{{ item.time }} H</p>
-                    <p>{{ item.date }}</p>
-                </div>
-            </li>
+        <ul class="list-box" v-for="todo in store.list" :key="todo">
+            <li>{{ todo.option1 }} {{ todo.option2 }} {{ todo.date }}</li>
         </ul>
     </div>
 </template>
 
 <script setup>
-import { ref, watchEffect } from 'vue'
+import { useListStore } from '../stores/list';
+import {computed} from 'vue';
 
-// HomeView 컴포넌트에서 넘어온 todoList를 받기위해 props 정의
-const props = defineProps({
-    todoList: {
-        title: String,
-        time: Number
-    }
-})
+const store = useListStore()
 
-// 넘어온 데이터 ref로 정의
-const itemList = ref([
-    {
-        title: '',
-        time: ''
-    },
-])
-
-
-const fetchList = () => {
-    itemList.value.title = props.todoList.title,
-    itemList.value.time = props.todoList.time
-    console.log(itemList.value)
-}
-
-watchEffect(fetchList)
-
-
-
-
+// const noTime = computed(() => {
+//     store.list.option2 ? nul
+// })
 
 </script>
 
