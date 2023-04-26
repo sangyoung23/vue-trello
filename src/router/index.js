@@ -1,5 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router';
-import HomeView from '../components/HomeView.vue'
+import HomeView from '../components/HomeView.vue';
+import DetailView from '../components/DetailView.vue';
 
 const routes = [
     {
@@ -7,6 +8,12 @@ const routes = [
         name: 'Homeview',
         component: HomeView
     },
+    {
+        path: '/detail/:id/:todo',
+        name: 'DetailView',
+        component: DetailView,
+        props: true
+    }
 ]
 
 const router = createRouter({

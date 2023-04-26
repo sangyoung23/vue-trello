@@ -19,7 +19,6 @@ import TodoCreateView from './TodoCreateView.vue';
 
 <style scoped>
 #home {
-    height: 100vh;
     padding: 2rem;
 }
 #home .list-box {
