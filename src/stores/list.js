@@ -1,15 +1,20 @@
-import { defineStore } from "pinia";
-import { ref } from "vue";
+import { defineStore } from 'pinia'
 
-export const useListStore = defineStore("list", () => {
-    // 할 일과 예상 시간을 담을 배열
-    const list = ref([]);
-    // 할 일과 예상 시간이 날아온 데이터를 list에 넣어주는 함수
-    function addList(todos) {
-        list.value.push({...todos, date: new Date().toISOString().substring(0, 10)})
-        todos.title = ''
-        todos.time = ''
-        todos.id++
+export const useTodoStore = defineStore({
+  id: 'todo',
+  state: () => ({
+    todos: []
+  }),
+  actions: {
+    // toods 배열에 추가 핸들러
+    addTodo (todo) {
+        this.todos.push({ ...todo, done: false })
+    },
+    // todos 배열안 값 삭제 핸들러
+    removeTodo (todo) {
+               const index = this.todos.indexOf(todo)
+        this.todos.splice(index, 1)
     }
-    return {list, addList}
-});
+  }
+})
+
