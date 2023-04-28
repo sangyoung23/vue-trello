@@ -1,12 +1,14 @@
 <template>
   <div id="todoList">
     <strong> To do </strong>
+    <TodoCreateView></TodoCreateView>
     <div class="status">
       <p>TOTAL : {{ todos.length }}</p>
       <p>예상 시간 : {{ allTime }}</p>
       <p>미등록 : {{ noTime }}</p>
     </div>
-    <div class="card mb-2" v-for="todo in todos" :key="todo">
+    <div id="card-box">
+      <div class="card mb-2" v-for="todo in todos" :key="todo">
       <div class="card-body">
         <h5 class="card-title mb-3">{{ todo.option1 }}</h5>
         <p class="card-text">{{ todo.option2 }} H</p>
@@ -14,6 +16,7 @@
         <button class="btn btn-success me-1" @click="goDetail(todo.id, todo)">자세히 보기</button>
         <button class="btn btn-danger" @click="removeTodo(todo)">삭제</button>
       </div>
+    </div>
     </div>
   </div>
 </template>
@@ -23,6 +26,7 @@ import { useTodoStore } from '../stores/list'
 import { storeToRefs } from 'pinia'
 import { useRouter } from 'vue-router'
 import { computed, ref } from 'vue'
+import TodoCreateView from '../components/TodoCreateView.vue'
 
 const router = useRouter()
 const store = useTodoStore()
@@ -64,6 +68,17 @@ const goDetail = (id, todo) => {
   font-weight: bold;
   color: #ccc;
 }
+.card {
+  display: flex;
+  width: 300px;
+  margin-right: 10px;
+}
+#card-box {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  width: 100%;
+}
 .btn {
   font-size: 13px;
 }
@@ -71,9 +86,10 @@ const goDetail = (id, todo) => {
   overflow-y: auto;
   display: flex;
   flex-direction: column;
-  width: 350px;
+  width: 80%;
   height: 710px;
   padding: 15px;
+  margin-left: 4rem;
   border-radius: 5px;
   background-color: #fff;
 }
@@ -112,18 +128,20 @@ const goDetail = (id, todo) => {
 #todoList .status {
   display: flex;
   justify-content: space-around;
-  margin-top: 1.2rem;
 }
 #todoList .status p:nth-child(1) {
   font-weight: bold;
+  font-size: 1.3rem;
   color: #0066ff;
 }
 #todoList .status p:nth-child(2) {
   font-weight: bold;
+  font-size: 1.3rem;
   color: green;
 }
 #todoList .status p:nth-child(3) {
   font-weight: bold;
+  font-size: 1.3rem;
   color: coral;
 }
 </style>

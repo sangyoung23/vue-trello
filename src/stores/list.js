@@ -3,7 +3,8 @@ import { defineStore } from 'pinia'
 export const useTodoStore = defineStore({
   id: 'todo',
   state: () => ({
-    todos: []
+    todos: [],
+    detailTodos: [],
   }),
   actions: {
     // toods 배열에 추가 핸들러
@@ -15,6 +16,10 @@ export const useTodoStore = defineStore({
     removeTodo(todo) {
       const index = this.todos.indexOf(todo)
       this.todos.splice(index, 1)
-    }
+    },
+    // 세부내용 배열 추가 핸들러
+    detailAddTodo(todo) {
+      this.detailTodos.push({...todo})
+    },
   }
 })

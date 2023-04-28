@@ -1,6 +1,6 @@
 <template>
   <div id="create">
-    <form class="input-group mb-3" @submit.prevent="inputCheck">
+    <form class="mb-3" @submit.prevent="inputCheck">
       <input
         v-model="todos.option1"
         type="text"
@@ -17,7 +17,7 @@
         aria-label="Example text with button addon"
         aria-describedby="button-addon1"
       />
-      <button class="btn btn-outline-success" id="button-addon1">추가</button>
+      <button class="btn btn-outline-warning" id="button-addon1">추가</button>
     </form>
   </div>
 </template>
@@ -53,7 +53,15 @@ const inputCheck = computed(() => {
 #create {
   padding: 2rem;
 }
+#create form {
+  display: flex;
+}
 #create input {
-  margin-right: 12px;
+  width: 45%;
+  height: 50px;
+  margin-right: 40px;
+}
+#create button {
+  height: 50px;
 }
 </style>
