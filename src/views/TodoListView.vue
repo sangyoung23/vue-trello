@@ -4,7 +4,7 @@
     <TodoCreateView></TodoCreateView>
     <div class="status">
       <p>TOTAL : {{ todos.length }}</p>
-      <p>예상 시간 : {{ allTime }}</p>
+      <p>예상 시간 : {{ allTime }} H</p>
       <p>미등록 : {{ noTime }}</p>
     </div>
     <div id="card-box">
@@ -58,6 +58,7 @@ const goDetail = (id, todo) => {
     }
   })
 }
+
 </script>
 
 <style scoped>

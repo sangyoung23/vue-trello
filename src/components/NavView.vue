@@ -1,6 +1,13 @@
 <template>
     <div id="nav">
-        <router-link class="title" to="/">Trello</router-link>
+        <router-link class="title" to="/">
+            <span style="color: red">T</span>
+            <span style="color: orange">R</span>
+            <span style="color: yellow">E</span>
+            <span style="color: green">L</span>
+            <span style="color: blue">L</span>
+            <span style="color: purple">O</span>
+        </router-link>
         <div>
             <i class="bi bi-list-check"></i>
             <router-link to="/list">List</router-link>
@@ -30,6 +37,7 @@
 #nav .title {
     font-weight: bold;
     font-size: 2.4rem;
+    letter-spacing: 1.1rem;
     text-decoration: none;
     color: white;
 }

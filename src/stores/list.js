@@ -4,13 +4,12 @@ export const useTodoStore = defineStore({
   id: 'todo',
   state: () => ({
     todos: [],
-    detailTodos: [],
+    detailTodos: []
   }),
   actions: {
     // toods 배열에 추가 핸들러
     addTodo(todo) {
       this.todos.push({ ...todo, attr: false })
-      console.log(this.todos)
     },
     // todos 배열안 값 삭제 핸들러
     removeTodo(todo) {
@@ -19,7 +18,7 @@ export const useTodoStore = defineStore({
     },
     // 세부내용 배열 추가 핸들러
     detailAddTodo(todo) {
-      this.detailTodos.push({...todo})
-    },
+      this.detailTodos.push({ ...todo })
+    }
   }
 })

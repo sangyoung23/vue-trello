@@ -43,10 +43,17 @@ const addTodo = () => {
   todos.option2 = ''
 }
 
-// 할 일을 작성하였는지 검사 핸들러
+// input 유효성 검사 핸들러
 const inputCheck = computed(() => {
-  return todos.option1 === '' ? alert('할 일을 입력해주세요.') : addTodo()
+  if (todos.option1 === '') {
+    return alert('할 일을 입력해주세요'  )
+  } else if (isNaN(todos.option2)) {
+    return alert('예상시간은 숫자만 입력 가능합니다.')
+  } else {
+    return addTodo()
+  }
 })
+
 </script>
 
 <style scoped>

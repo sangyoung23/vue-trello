@@ -21,54 +21,41 @@
         aria-label="Example text with button addon"
         aria-describedby="button-addon1"
       />
-      <button class="btn btn-outline-warning" id="button-addon1" @click="detailAddTodo">
+      <button class="btn btn-outline-warning me-3" id="button-addon1" @click="detailAddTodo">
         추가
       </button>
     </form>
     <div class="detail-body">
       <div class="detail-content">
-        <h1>오늘의 할일 : {{ todo.option1 }}</h1>
-        <h2>예상시간 : {{ todo.option2 }} H</h2>
+        <h1 class="today-todo">오늘의 할일</h1>
+        <h1>{{ todo.option1 }}</h1>
+        <h2>예상시간 : {{ todo.option2 ? `${todo.option2} H` : '없음' }}</h2>
       </div>
-        <div class="form-todo">
-          <div class="form-check" v-for="todo in detailTodos" :key="todo">
-            <input
-              @change="setChecked(todo)"
-              class="form-check-input"
-              type="checkbox"
-              value=""
-              id="flexCheckDefault"
-            />
-            <label
-              :class="[todo.checked ? style1 : style2]"
-              class="form-check-label"
-              for="flexCheckDefault"
-              >{{ todo.text }}</label
-            >
-          </div>
-        </div>
+      <DetailTodosView :todo="todo"></DetailTodosView>
     </div>
   </div>
 </template>
 
 <script setup>
-import { storeToRefs } from 'pinia'
+import DetailTodosView from './DetailTodosView.vue'
 import { ref, reactive } from 'vue'
 import { useRoute } from 'vue-router'
 import { useTodoStore } from '../stores/list'
-const style1 = 'checked'
-const style2 = 'check'
+
 
 const store = useTodoStore()
 const route = useRoute()
 const todo = JSON.parse(route.params.todo)
+
+
+
+const attr = ref(todo.attr ? 'done' : 'doing')
 const detailTodo = reactive({
   text: '',
   checked: false
 })
-const attr = ref(todo.attr ? 'done' : 'doing')
-const { detailTodos } = storeToRefs(store)
 
+// select 값에 따른 데이터 바인딩
 const changeAttr = (event) => {
   if (event.target.value === 'done') {
     todo.attr = true
@@ -79,14 +66,12 @@ const changeAttr = (event) => {
   }
 }
 
+// 상세페이지 세부내용 추가 핸들러
 const detailAddTodo = () => {
   store.detailAddTodo(detailTodo)
   detailTodo.text = ''
 }
 
-const setChecked = (todo) => {
-  todo.checked = !todo.checked
-}
 </script>
 
 <style scoped>
@@ -154,6 +139,14 @@ const setChecked = (todo) => {
   display: flex;
   flex-direction: column;
   align-items: center;
+  width: 40%;
+}
+.detail-content .today-todo {
+  font-weight: bold;
+  color: goldenrod;
+}
+.detail-content h1 {
+  text-align: center;
 }
 .detail-content h2 {
   margin-top: 20px;
@@ -169,7 +162,7 @@ const setChecked = (todo) => {
   display: flex;
 }
 #detail-create input {
-  width: 90%;
+  width: 85%;
   height: 50px;
   margin-right: 40px;
 }
