@@ -20,7 +20,7 @@
         </div>
       </div>
     </div>
-    <div class="noting" v-else>
+    <div class="no-result" v-else>
       <p>검색 결과가 없습니다.</p>
     </div>
   </div>
@@ -55,14 +55,15 @@ const goDetail = (id, todo) => {
   overflow-y: auto;
   display: flex;
   flex-direction: column;
-  width: 350px;
+  width: 50%;
   height: 710px;
+  margin: 0 auto;
   padding: 15px;
   border-radius: 5px;
   background-color: #fff;
 }
 #searchList strong {
-  font-size: 22px;
+  font-size: 25px;
   color: goldenrod;
 }
 #searchList::-webkit-scrollbar {
@@ -77,9 +78,10 @@ const goDetail = (id, todo) => {
   border-radius: 10px;
   box-shadow: inset 0px 0px 5px white;
 }
-.noting {
+.no-result {
   text-align: center;
   font-weight: 600;
+  margin-top: 2rem;
 }
 .card-title {
   font-weight: bold;

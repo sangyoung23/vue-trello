@@ -15,31 +15,41 @@
         >{{ todo.text }}</label
       >
     </div>
-    {{ props.todo.attr }}
   </div>
 </template>
 
 <script setup>
 import { storeToRefs } from 'pinia'
 import { useTodoStore } from '../stores/list'
+import { ref } from 'vue'
 
 const style1 = 'checked'
 const style2 = 'check'
 const store = useTodoStore()
 
-const {detailTodos} = storeToRefs(store)
+const { detailTodos } = storeToRefs(store)
 
+// props로 전달 받은 것은 ref, reactive에 반응성 연결을 한 뒤
+// 값을 변경하는 코드를 작성한다.
 const props = defineProps({
-    todo: Object
+  todo: Object
 })
 
-console.log(props.todo.attr)
+// props값 데이터 값 조작을 위해 ref 연결
+const refProps = ref(props)
 
 // 체크값의 따라 특정 클래스 부여
 const setChecked = (detailTodo) => {
   detailTodo.checked = !detailTodo.checked
-  !props.todo.attr
+  refProps.value.todo.attr = !refProps.value.todo.attr
 }
 </script>
 
-<style scoped></style>
+<style scoped>
+.checked {
+  text-decoration: line-through 2px;
+}
+.check {
+  text-decoration: none;
+}
+</style>

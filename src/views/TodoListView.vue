@@ -9,14 +9,14 @@
     </div>
     <div id="card-box">
       <div class="card mb-2" v-for="todo in todos" :key="todo">
-      <div class="card-body">
-        <h5 class="card-title mb-3">{{ todo.option1 }}</h5>
-        <p class="card-text">{{ todo.option2 }} H</p>
-        <p class="card-text">{{ todo.date }}</p>
-        <button class="btn btn-success me-1" @click="goDetail(todo.id, todo)">자세히 보기</button>
-        <button class="btn btn-danger" @click="removeTodo(todo)">삭제</button>
+        <div class="card-body">
+          <h5 class="card-title mb-3">{{ todo.option1 }}</h5>
+          <p class="card-text">{{ todo.option2 }} H</p>
+          <p class="card-text">{{ todo.date }}</p>
+          <button class="btn btn-success me-1" @click="goDetail(todo.id, todo)">자세히 보기</button>
+          <button class="btn btn-danger" @click="removeTodo(todo)">삭제</button>
+        </div>
       </div>
-    </div>
     </div>
   </div>
 </template>
@@ -58,7 +58,6 @@ const goDetail = (id, todo) => {
     }
   })
 }
-
 </script>
 
 <style scoped>
@@ -90,7 +89,7 @@ const goDetail = (id, todo) => {
   width: 80%;
   height: 710px;
   padding: 15px;
-  margin-left: 4rem;
+  margin: 0 auto;
   border-radius: 5px;
   background-color: #fff;
 }

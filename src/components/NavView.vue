@@ -20,6 +20,10 @@
             <i class="bi bi-check2-square"></i>
             <router-link to="/completion">Done</router-link>
         </div>
+        <div>
+            <i class="bi bi-search"></i>
+            <router-link to="/search">Search</router-link>
+        </div>
     </div>
 </template>
 

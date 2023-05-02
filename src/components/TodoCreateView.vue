@@ -33,7 +33,8 @@ const todos = reactive({
   option1: '',
   option2: '',
   date: new Date().toISOString().substring(0, 10),
-  id: 0
+  id: 0,
+  attr: false
 })
 
 // 추가 핸들러
@@ -46,14 +47,13 @@ const addTodo = () => {
 // input 유효성 검사 핸들러
 const inputCheck = computed(() => {
   if (todos.option1 === '') {
-    return alert('할 일을 입력해주세요'  )
+    return alert('할 일을 입력해주세요')
   } else if (isNaN(todos.option2)) {
     return alert('예상시간은 숫자만 입력 가능합니다.')
   } else {
     return addTodo()
   }
 })
-
 </script>
 
 <style scoped>

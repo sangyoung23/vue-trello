@@ -4,6 +4,7 @@ import DetailView from '../components/DetailView.vue';
 import TodoListView from '../views/TodoListView.vue';
 import OngoingView from '../views/OngoingView.vue';
 import CompletionView from '../views/CompletionView.vue';
+import SearchListView from '../views/SearchListView.vue'
 
 const routes = [
     {
@@ -31,6 +32,11 @@ const routes = [
         path: '/completion',
         name: 'CompletionView',
         component: CompletionView
+    },
+    {
+        path: '/search',
+        name: 'SearchView',
+        component: SearchListView
     }
 ]
 

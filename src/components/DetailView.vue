@@ -24,6 +24,7 @@
       <button class="btn btn-outline-warning me-3" id="button-addon1" @click="detailAddTodo">
         추가
       </button>
+      <button type="button" class="btn btn-outline-success" @click="attrTodos">저장</button>
     </form>
     <div class="detail-body">
       <div class="detail-content">
@@ -38,49 +39,57 @@
 
 <script setup>
 import DetailTodosView from './DetailTodosView.vue'
-import { ref, reactive } from 'vue'
-import { useRoute } from 'vue-router'
+import { reactive, ref } from 'vue'
+import { useRoute, useRouter } from 'vue-router'
 import { useTodoStore } from '../stores/list'
-
 
 const store = useTodoStore()
 const route = useRoute()
+const router = useRouter()
 const todo = JSON.parse(route.params.todo)
-
-
-
 const attr = ref(todo.attr ? 'done' : 'doing')
 const detailTodo = reactive({
-  text: '',
-  checked: false
+  text: ''
 })
 
 // select 값에 따른 데이터 바인딩
 const changeAttr = (event) => {
   if (event.target.value === 'done') {
     todo.attr = true
+    console.log(todo)
     attr.value = 'done'
   } else if (event.target.value === 'doing') {
     todo.attr = false
+    console.log(todo)
     attr.value = 'doing'
+  }
+}
+
+// attr 값에 따른 done, doing 분류
+const attrTodos = () => {
+  if (todo.attr === true) {
+    store.doneAddTodo(todo)
+    alert('저장이 완료되었습니다.')
+    router.push({ name: 'ListView' })
+  } else if (todo.attr === false) {
+    store.doingAddTodo(todo)
+    alert('저장이 완료되었습니다.')
+    router.push({ name: 'ListView' })
   }
 }
 
 // 상세페이지 세부내용 추가 핸들러
 const detailAddTodo = () => {
-  store.detailAddTodo(detailTodo)
-  detailTodo.text = ''
+  if (detailTodo.text === '') {
+    alert('추가사항을 입력해주세요')
+  } else {
+    store.detailAddTodo(detailTodo)
+    detailTodo.text = ''
+  }
 }
-
 </script>
 
 <style scoped>
-.checked {
-  text-decoration: line-through 2px;
-}
-.check {
-  text-decoration: none;
-}
 .detail {
   width: 80%;
   height: 710px;
