@@ -40,7 +40,7 @@
 }
 #nav .title {
     font-weight: bold;
-    font-size: 2.4rem;
+    font-size: 2rem;
     letter-spacing: 1.1rem;
     text-decoration: none;
     color: white;

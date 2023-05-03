@@ -32,7 +32,7 @@
         <h1>{{ todo.option1 }}</h1>
         <h2>예상시간 : {{ todo.option2 ? `${todo.option2} H` : '없음' }}</h2>
       </div>
-      <DetailTodosView :todo="todo"></DetailTodosView>
+      <DetailTodosView></DetailTodosView>
     </div>
   </div>
 </template>
@@ -47,7 +47,7 @@ const store = useTodoStore()
 const route = useRoute()
 const router = useRouter()
 const todo = JSON.parse(route.params.todo)
-const attr = ref(todo.attr ? 'done' : 'doing')
+const attr = ref(todo.attr ? 'done' : '상태')
 const detailTodo = reactive({
   text: ''
 })
@@ -56,26 +56,34 @@ const detailTodo = reactive({
 const changeAttr = (event) => {
   if (event.target.value === 'done') {
     todo.attr = true
-    console.log(todo)
-    attr.value = 'done'
   } else if (event.target.value === 'doing') {
     todo.attr = false
-    console.log(todo)
-    attr.value = 'doing'
   }
 }
-
 // attr 값에 따른 done, doing 분류
 const attrTodos = () => {
   if (todo.attr === true) {
-    store.doneAddTodo(todo)
-    alert('저장이 완료되었습니다.')
-    router.push({ name: 'ListView' })
+    const result = store.doneTodos.find((item) => item.option1 === todo.option1)
+    if (result) {
+      alert('현재 완료 상태입니다.')
+    } else {
+      store.doneAddTodo(todo)
+      // const index = store.doingTodos.indexOf(todo)
+      // store.doingTodos.splice(index, 1)
+      alert('저장이 완료되었습니다.')
+    }
   } else if (todo.attr === false) {
-    store.doingAddTodo(todo)
-    alert('저장이 완료되었습니다.')
-    router.push({ name: 'ListView' })
+    const result = store.doingTodos.find((item) => item.option1 === todo.option1)
+    if (result) {
+      alert('현재 진행중 상태입니다.')
+    } else {
+      store.doingAddTodo(todo)
+      // const index = store.doneTodos.indexOf(todo)
+      // store.doneTodos.splice(index, 1)
+      alert('저장이 완료되었습니다.')
+    }
   }
+  router.push({ name: 'ListView' })
 }
 
 // 상세페이지 세부내용 추가 핸들러
@@ -83,7 +91,7 @@ const detailAddTodo = () => {
   if (detailTodo.text === '') {
     alert('추가사항을 입력해주세요')
   } else {
-    store.detailAddTodo(detailTodo)
+    store.detailAddTodo(detailTodo, todo)
     detailTodo.text = ''
   }
 }
@@ -114,6 +122,7 @@ const detailAddTodo = () => {
   height: 60%;
   margin-top: 3rem;
 }
+
 .form-todo {
   display: flex;
   border: 2px solid black;

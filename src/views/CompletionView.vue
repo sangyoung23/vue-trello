@@ -17,10 +17,9 @@
 </template>
 
 <script setup>
-import { useTodoStore } from "../stores/list";
+import { useTodoStore } from '../stores/list'
 
-const store = useTodoStore();
-
+const store = useTodoStore()
 </script>
 
 <style scoped>
@@ -42,7 +41,6 @@ const store = useTodoStore();
 }
 #done .status h2 {
   font-weight: bold;
-
 }
 .card-title {
   font-weight: bold;
