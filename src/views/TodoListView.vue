@@ -35,7 +35,7 @@ const total = ref(todos)
 
 // 삭제 핸들러
 const removeTodo = (todo) => {
-  store.removeTodo(todo)
+  store.removeTodoAndRelated(todo)
 }
 
 // 총 예상 시간
