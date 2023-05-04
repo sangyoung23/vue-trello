@@ -8,6 +8,7 @@
         aria-label="Default select example"
         v-model="attr"
       >
+        <option value="상태">상태</option>
         <option value="doing">doing</option>
         <option value="done">done</option>
       </select>
