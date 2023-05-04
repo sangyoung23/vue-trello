@@ -32,7 +32,7 @@
         <h1>{{ todo.option1 }}</h1>
         <h2>예상시간 : {{ todo.option2 ? `${todo.option2} H` : '없음' }}</h2>
       </div>
-      <DetailTodosView></DetailTodosView>
+      <DetailTodosView :todo="todo"></DetailTodosView>
     </div>
   </div>
 </template>

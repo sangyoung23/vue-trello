@@ -19,13 +19,13 @@ export const useTodoStore = defineStore({
       // todos 배열에서 삭제
       const index = this.todos.indexOf(todo)
       this.todos.splice(index, 1)
-      
+
       // doneTodos 배열에서 삭제
       const doneIndex = this.doneTodos.findIndex((item) => item.id === todo.id)
       if (doneIndex !== -1) {
         this.doneTodos.splice(doneIndex, 1)
       }
-      
+
       // doingTodos 배열에서 삭제
       const doingIndex = this.doingTodos.findIndex((item) => item.id === todo.id)
       if (doingIndex !== -1) {
@@ -33,6 +33,7 @@ export const useTodoStore = defineStore({
       }
     },
     // 세부내용 배열 추가 핸들러
+    // id 값이 일치하는 객체를 찾아 일치 하는 객체 안에 체크리스트 text를 담는다.
     detailAddTodo(detailTodo, todo) {
       const targetTodo = this.todos.find((item) => item.id === todo.id)
       if (targetTodo) {
@@ -43,7 +44,6 @@ export const useTodoStore = defineStore({
           targetTodo.detailTodos.push(detailItem)
         }
       }
-      console.log(this.detailTodos)
     },
     // 완료 상태를 담는 함수
     doneAddTodo(todo) {
@@ -52,6 +52,6 @@ export const useTodoStore = defineStore({
     // 진행중인 상태를 담는 함수
     doingAddTodo(todo) {
       this.doingTodos.push({ ...todo })
-    },
+    }
   }
 })
