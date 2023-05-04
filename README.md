@@ -1,35 +1,16 @@
 # vue-trello
 
-This template should help get you started developing with Vue 3 in Vite.
+# ![리드미 이미지](https://user-images.githubusercontent.com/76932869/236091453-a1cb1481-b70a-48c3-8f70-7604375bf537.PNG)
 
-## Recommended IDE Setup
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
+## 기능
+- 할 일과 예상시간을 작성하고 추가하면 리스트에 등록
+- 아이템의 총 갯수, 총 예상시간, 예상시간 미등록 갯수 출력
+- 등록된 아이템은 각각의 체크리스트를 작성 가능
+- 체크리스트는 class 바인딩으로 완료와 진행중 구분
+- 할 일의 진행상태를 '진행중'과 '완료'로 구분
+- 진행 상태를 선택하면 선택한 진행상태에 맞게 아이템이 추가됨
+- 검색 컴포넌트에서 아이템을 검색 가능
+- ....
 
-## Customize configuration
 
-See [Vite Configuration Reference](https://vitejs.dev/config/).
-
-## Project Setup
-
-```sh
-npm install
-```
-
-### Compile and Hot-Reload for Development
-
-```sh
-npm run dev
-```
-
-### Compile and Minify for Production
-
-```sh
-npm run build
-```
-
-### Lint with [ESLint](https://eslint.org/)
-
-```sh
-npm run lint
-```
