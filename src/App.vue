@@ -2,7 +2,6 @@
   <div id="app-view">
     <HeaderView></HeaderView>
     <div class="nav-display">
-      <NavView></NavView>
       <router-view></router-view>
     </div>
   </div>
@@ -10,7 +9,6 @@
 
 <script setup>
 import HeaderView from './components/HeaderView.vue'
-import NavView from './components/NavView.vue';
 </script>
 
 <style scoped>

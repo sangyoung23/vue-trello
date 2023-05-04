@@ -1,24 +1,22 @@
 <template>
   <div id="home">
-    <h1>Create To Do</h1>
-    <img src="../assets/image/메인이미지.PNG" alt="">
+    <TodoListView></TodoListView>
+    <OngoingView></OngoingView>
+    <CompletionView></CompletionView>
   </div>
 </template>
 
 <script setup>
+import TodoListView from '../views/TodoListView.vue'
+import OngoingView from '../views/OngoingView.vue'
+import CompletionView from '../views/CompletionView.vue'
 </script>
 
 <style scoped>
 #home {
   display: flex;
-  flex-direction: column;
-  justify-content: center;
   align-items: center;
-  width: 80%;
-}
-#home h1 {
-  font-weight: bold;
-  letter-spacing: 1rem;
-  margin-bottom: 30px;
+  width: 100%;
+  height: calc(100vh - 70px);
 }
 </style>

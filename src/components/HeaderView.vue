@@ -3,6 +3,8 @@
     <div></div>
     <div></div>
     <div></div>
+    <router-link to="/">Home</router-link>
+    <router-link to="/search">Search</router-link>
   </div>
 </template>
 
@@ -36,5 +38,15 @@
   height: 12px;
   border-radius: 50%;
   background-color: green;
+}
+#header a {
+  font-size: 24px;
+  font-weight: bold;
+  color: black;
+  text-decoration: none;
+  margin-left: 2rem;
+}
+#header a:hover {
+  color: tomato;
 }
 </style>

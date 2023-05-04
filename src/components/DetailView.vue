@@ -83,7 +83,7 @@ const attrTodos = () => {
       alert('저장이 완료되었습니다.')
     }
   }
-  router.push({ name: 'ListView' })
+  router.push({ name: 'HomeView' })
 }
 
 // 상세페이지 세부내용 추가 핸들러

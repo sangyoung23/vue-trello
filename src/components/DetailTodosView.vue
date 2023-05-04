@@ -26,6 +26,7 @@ import { useTodoStore } from '../stores/list'
 
 const store = useTodoStore()
 
+// DetailView에서 넘어온 todo 정의
 const props = defineProps({
   todo: {
     type: Object
@@ -49,8 +50,8 @@ const setChecked = (todo) => {
 }
 .form-check {
   display: flex;
-  align-items: center;
-  width: 50%;
+  width: 100%;
+  margin: 20px 0;
 }
 .form-check-label {
   font-size: 1.2rem;

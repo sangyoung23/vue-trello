@@ -5,7 +5,7 @@
         v-model="todos.option1"
         type="text"
         class="form-control"
-        placeholder="할 일을 입력하세요."
+        placeholder="할 일 입력"
         aria-label="Example text with button addon"
         aria-describedby="button-addon1"
       />
@@ -13,7 +13,7 @@
         v-model="todos.option2"
         type="text"
         class="form-control"
-        placeholder="예상 시간을 작성해보세요"
+        placeholder="예상 시간 작성"
         aria-label="Example text with button addon"
         aria-describedby="button-addon1"
       />
@@ -58,17 +58,22 @@ const inputCheck = computed(() => {
 
 <style scoped>
 #create {
-  padding: 2rem;
+  padding: 10px;
 }
 #create form {
   display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 100%;
 }
 #create input {
-  width: 45%;
-  height: 50px;
-  margin-right: 40px;
+  width: 55%;
+  height: 35px;
+  margin-right: 20px;
 }
 #create button {
-  height: 50px;
+  width: 15%;
+  height: 35px;
+  text-align: center;
 }
 </style>
