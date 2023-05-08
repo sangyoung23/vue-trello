@@ -24,11 +24,11 @@
         aria-label="Example text with button addon"
         aria-describedby="button-addon1"
       />
-      <input type="text" v-model="editText" placeholder="수정 할 내용을 작성하세요">
-      <button class="btn btn-outline-warning me-3" id="button-addon1" @click="detailAddTodo">
+      <input type="text" v-model="editText" placeholder="수정 할 내용을 작성하세요" class="form-control">
+      <button class="btn btn-outline-warning " id="button-addon1" @click="detailAddTodo">
         추가
       </button>
-      <button type="button" class="btn btn-outline-danger" @click="editTodo">수정</button>
+      <button type="button" class="btn btn-outline-danger " @click="editTodo">수정</button>
       <button type="button" class="btn btn-outline-success" @click="attrTodos">저장</button>
     </form>
     <div class="detail-body">
@@ -204,11 +204,11 @@ const detailAddTodo = () => {
 }
 #detail-create {
   display: flex;
+  justify-content: space-between;
 }
 #detail-create input {
-  width: 85%;
+  width: 40%;
   height: 50px;
-  margin-right: 40px;
 }
 #detail-create button {
   height: 50px;
