@@ -30,6 +30,20 @@ export const useTodoStore = defineStore({
       const index = this.doneTodos.indexOf(todo)
       this.doneTodos.splice(index, 1)
     },
+    editTodos(todo, editText) {
+      const editFindTodo = this.todos.find((item) => item.id === todo.id)
+      const editFindDone = this.doneTodos.find((item) => item.id === todo.id)
+      const editFindDoing = this.doingTodos.find((item) => item.id === todo.id)
+      if (editFindTodo) {
+        editFindTodo.option1 = editText
+      } else if (editFindDone) {
+        editFindDone.option1 = editText
+      } else if (editFindDoing) {
+        editFindDoing.option1 = editText
+      } else {
+        return
+      }
+    },
     // 세부내용 배열 추가 핸들러
     // id 값이 일치하는 객체를 찾아 일치 하는 객체 안에 체크리스트 text를 담는다.
     detailAddTodo(detailTodo, todo) {

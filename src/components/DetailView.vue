@@ -24,9 +24,11 @@
         aria-label="Example text with button addon"
         aria-describedby="button-addon1"
       />
+      <input type="text" v-model="editText" placeholder="수정 할 내용을 작성하세요">
       <button class="btn btn-outline-warning me-3" id="button-addon1" @click="detailAddTodo">
         추가
       </button>
+      <button type="button" class="btn btn-outline-danger" @click="editTodo">수정</button>
       <button type="button" class="btn btn-outline-success" @click="attrTodos">저장</button>
     </form>
     <div class="detail-body">
@@ -46,6 +48,7 @@ import { reactive, ref } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import { useTodoStore } from '../stores/list'
 
+const editText = ref('')
 const store = useTodoStore()
 const route = useRoute()
 const router = useRouter()
@@ -56,6 +59,12 @@ const done = ref('done')
 const detailTodo = reactive({
   text: ''
 })
+
+const editTodo = () => {
+  store.editTodos(todo, editText.value)
+  todo.option1 = editText.value
+  editText.value = ''
+}
 
 // select 값에 따른 데이터 바인딩
 const changeAttr = (event) => {
