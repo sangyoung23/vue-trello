@@ -6,15 +6,13 @@ export const useTodoStore = defineStore({
     todos: [],
     detailTodos: [],
     doneTodos: [],
-    doingTodos: [],
-    array: []
+    doingTodos: []
   }),
   actions: {
     // todos 배열에 추가 핸들러
     addTodo(todo) {
       todo.id++
       this.todos.push({ ...todo })
-      this.array.push(this.todos) 
     },
     // todos 배열안 값 삭제 핸들러
     removeTodoAndRelated(todo) {
@@ -42,8 +40,7 @@ export const useTodoStore = defineStore({
         const detailItem = { ...detailTodo, id: Date.now() }
         if (!targetTodo.detailTodos) {
           targetTodo.detailTodos = [detailItem]
-        }  
-        else {
+        } else {
           targetTodo.detailTodos.push(detailItem)
         }
       }
@@ -51,8 +48,7 @@ export const useTodoStore = defineStore({
         const detailItem = { ...detailTodo, id: Date.now() }
         if (!targetTodo1.detailTodos) {
           targetTodo1.detailTodos = [detailItem]
-        }  
-        else {
+        } else {
           targetTodo1.detailTodos.push(detailItem)
         }
       }
@@ -60,8 +56,7 @@ export const useTodoStore = defineStore({
         const detailItem = { ...detailTodo, id: Date.now() }
         if (!targetTodo2.detailTodos) {
           targetTodo2.detailTodos = [detailItem]
-        }  
-        else {
+        } else {
           targetTodo2.detailTodos.push(detailItem)
         }
       }
@@ -74,7 +69,6 @@ export const useTodoStore = defineStore({
       if (indexTodo !== -1) {
         this.doingTodos.splice(indexTodo, 1)
       }
-      this.array.push(this.doneTodos) 
     },
     // 진행중인 상태를 담는 함수
     doingAddTodo(todo) {
@@ -84,7 +78,6 @@ export const useTodoStore = defineStore({
       if (indexTodo !== -1) {
         this.doneTodos.splice(indexTodo, 1)
       }
-      this.array.push(this.doingTodos) 
     }
   }
 })
