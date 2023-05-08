@@ -2,7 +2,7 @@
   <div id="done">
     <strong>Done</strong>
     <div class="status">
-      <h2>완료 : {{ store.doneTodos.length }}</h2>
+      <h2>완료 : {{ doneTodos.length }}</h2>
     </div>
     <div class="status">
       <p>TOTAL : {{ doneTodos.length }}</p>
@@ -16,7 +16,7 @@
           <p class="card-text">{{ todo.option2 }} H</p>
           <p class="card-text">{{ todo.date }}</p>
           <button class="btn btn-success me-1" @click="goDetail(todo.id, todo)">자세히 보기</button>
-          <button class="btn btn-danger" @click="removeTodo(todo)">삭제</button>
+          <button class="btn btn-danger" @click="removeDone(todo)">삭제</button>
         </div>
       </div>
     </div>
@@ -27,8 +27,10 @@
 import {ref, computed} from 'vue'
 import { storeToRefs } from 'pinia'
 import { useTodoStore } from '../stores/list'
+import { useRouter } from 'vue-router'
 
 const store = useTodoStore()
+const router = useRouter()
 const {doneTodos} = storeToRefs(store)
 const total = ref(doneTodos)
 
@@ -42,9 +44,20 @@ const noTime = computed(() => {
   return total.value.filter((item) => !item.option2).length
 })
 
+// Detail 이동
+const goDetail = (id, todo) => {
+  router.push({
+    name: 'DetailView',
+    params: {
+      id,
+      todo: JSON.stringify(todo)
+    }
+  })
+}
+
 // 삭제 핸들러
-const removeTodo = (todo) => {
-  store.removeTodoAndRelated(todo)
+const removeDone = (todo) => {
+  store.removeDoneTodos(todo)
 }
 </script>
 

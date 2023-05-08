@@ -34,7 +34,7 @@ const todos = reactive({
   option2: '',
   date: new Date().toISOString().substring(0, 10),
   id: 0,
-  attr: false
+  attr: null
 })
 
 // 추가 핸들러

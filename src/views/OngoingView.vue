@@ -2,7 +2,7 @@
   <div id="doing">
     <strong>Doing</strong>
     <div class="status">
-      <h3>진행중 : {{ store.doingTodos.length }}</h3>
+      <h3>진행중 : {{ doingTodos.length }}</h3>
     </div>
     <div class="status">
       <p>TOTAL : {{ doingTodos.length }}</p>
@@ -25,10 +25,12 @@
 
 <script setup>
 import {ref, computed} from 'vue'
+import {useRouter} from 'vue-router'
 import { storeToRefs } from 'pinia'
 import { useTodoStore } from '../stores/list'
 
 const store = useTodoStore()
+const router = useRouter()
 const {doingTodos} = storeToRefs(store)
 const total = ref(doingTodos)
 
@@ -42,9 +44,20 @@ const noTime = computed(() => {
   return total.value.filter((item) => !item.option2).length
 })
 
+// Detail 이동
+const goDetail = (id, todo) => {
+  router.push({
+    name: 'DetailView',
+    params: {
+      id,
+      todo: JSON.stringify(todo)
+    }
+  })
+}
+
 // 삭제 핸들러
 const removeDoing = (todo) => {
-  store.removeTodoAndRelated(todo)
+  store.removeDoingTodos(todo)
 }
 </script>
 

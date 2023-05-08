@@ -13,14 +13,13 @@
 </template>
 
 <script setup>
-import {useRouter} from 'vue-router'
-import { useTodoStore } from '../stores/list';
+import { useRouter } from 'vue-router'
+import { useTodoStore } from '../stores/list'
 import { storeToRefs } from 'pinia'
 
 const store = useTodoStore()
 const router = useRouter()
 const { todos } = storeToRefs(store)
-
 
 // 삭제 핸들러
 const removeTodo = (todo) => {

@@ -1,7 +1,9 @@
 <template>
   <div class="detail">
     <div class="detail-head">
-      <h1>{{ attr }}</h1>
+      <h1 v-if="todo.attr">{{ done }}</h1>
+      <h1 v-else-if="todo.attr === null">{{ attr }}</h1>
+      <h1 v-else>{{ doing }}</h1>
       <select
         @change="changeAttr($event)"
         class="form-select"
@@ -48,7 +50,9 @@ const store = useTodoStore()
 const route = useRoute()
 const router = useRouter()
 const todo = JSON.parse(route.params.todo)
-const attr = ref(todo.attr ? 'done' : '상태')
+const attr = ref('상태')
+const doing = ref('doing')
+const done = ref('done')
 const detailTodo = reactive({
   text: ''
 })
@@ -69,8 +73,14 @@ const attrTodos = () => {
       alert('현재 완료 상태입니다.')
     } else {
       store.doneAddTodo(todo)
-      // const index = store.doingTodos.indexOf(todo)
-      // store.doingTodos.splice(index, 1)
+      const index = store.todos.findIndex((item) => item.id === todo.id)
+      if (index !== -1) {
+        store.todos.splice(index, 1)
+      }
+      const index1 = store.doingTodos.findIndex((item) => item.id === todo.id)
+      if (index1 !== -1) {
+        store.doingTodos.splice(index1, 1)
+      }
       alert('저장이 완료되었습니다.')
     }
   } else if (todo.attr === false) {
@@ -79,8 +89,14 @@ const attrTodos = () => {
       alert('현재 진행중 상태입니다.')
     } else {
       store.doingAddTodo(todo)
-      // const index = store.doneTodos.indexOf(todo)
-      // store.doneTodos.splice(index, 1)
+      const index = store.todos.findIndex((item) => item.id === todo.id)
+      if (index !== -1) {
+        store.todos.splice(index, 1)
+      }
+      const index1 = store.doneTodos.findIndex((item) => item.id === todo.id)
+      if (index1 !== -1) {
+        store.doneTodos.splice(index1, 1)
+      }
       alert('저장이 완료되었습니다.')
     }
   }
