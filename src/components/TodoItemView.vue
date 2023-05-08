@@ -1,25 +1,33 @@
 <template>
   <div id="card-box">
-    <div class="card mb-2" v-for="todo in todos" :key="todo">
-      <div class="card-body">
-        <h5 class="card-title mb-3">{{ todo.option1 }}</h5>
-        <p class="card-text">{{ todo.option2 }} H</p>
-        <p class="card-text">{{ todo.date }}</p>
-        <button class="btn btn-success me-1" @click="goDetail(todo.id, todo)">자세히 보기</button>
-        <button class="btn btn-danger" @click="removeTodo(todo)">삭제</button>
+    <vue-draggable-next :todos="todos">
+      <div class="card mb-2" v-for="todo in todos" :key="todo.id" :enabled="enabled" :dragging="dragging">
+        <div class="card-body">
+          <h5 class="card-title mb-3">{{ todo.option1 }}</h5>
+          <p class="card-text">{{ todo.option2 }} H</p>
+          <p class="card-text">{{ todo.date }}</p>
+          <button class="btn btn-success me-1" @click="goDetail(todo.id, todo)">자세히 보기</button>
+          <button class="btn btn-danger" @click="removeTodo(todo)">삭제</button>
+        </div>
       </div>
-    </div>
+    </vue-draggable-next>
   </div>
 </template>
 
 <script setup>
+import {VueDraggableNext} from 'vue-draggable-next'
 import { useRouter } from 'vue-router'
 import { useTodoStore } from '../stores/list'
 import { storeToRefs } from 'pinia'
+import {ref} from 'vue'
 
+
+const enabled = ref(true)
+const dragging = ref(false)
 const store = useTodoStore()
 const router = useRouter()
 const { todos } = storeToRefs(store)
+
 
 // 삭제 핸들러
 const removeTodo = (todo) => {

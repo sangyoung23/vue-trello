@@ -36,7 +36,7 @@ const router = useRouter()
 const text = ref('')
 
 const filteredTodos = computed(() => {
-  return store.todos.filter((item) => item.option1.includes(text.value))
+  return store.array.filter((item) => item.option1.includes(text.value))
 })
 
 const goDetail = (id, todo) => {

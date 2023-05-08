@@ -50,7 +50,10 @@ const inputCheck = computed(() => {
     return alert('할 일을 입력해주세요')
   } else if (isNaN(todos.option2)) {
     return alert('예상시간은 숫자만 입력 가능합니다.')
-  } else {
+  } else if (Number(todos.option2) >= 10) {
+    return alert('시간은 한자리 수만 입력 가능합니다.')
+  }
+  else {
     return addTodo()
   }
 })
