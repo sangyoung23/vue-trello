@@ -24,12 +24,15 @@
         aria-label="Example text with button addon"
         aria-describedby="button-addon1"
       />
-      <input type="text" v-model="editText" placeholder="수정 할 내용을 작성하세요" class="form-control">
-      <button class="btn btn-outline-warning " id="button-addon1" @click="detailAddTodo">
+      <input
+        type="text"
+        v-model="editText"
+        placeholder="수정 할 내용을 작성하세요"
+        class="form-control"
+      />
+      <button class="btn btn-outline-warning" id="button-addon1" @click="detailAddTodo">
         추가
       </button>
-      <button type="button" class="btn btn-outline-danger " @click="editTodo">수정</button>
-      <button type="button" class="btn btn-outline-success" @click="attrTodos">저장</button>
     </form>
     <div class="detail-body">
       <div class="detail-content">
@@ -38,6 +41,10 @@
         <h2>예상시간 : {{ todo.option2 ? `${todo.option2} H` : '없음' }}</h2>
       </div>
       <DetailTodosView :todo="todo"></DetailTodosView>
+    </div>
+    <div class="d-flex justify-content-end mt-4">
+      <button type="button" class="btn btn-outline-danger me-3" @click="editTodo">수정</button>
+      <button type="button" class="btn btn-outline-success" @click="attrTodos">저장</button>
     </div>
   </div>
 </template>
@@ -64,6 +71,8 @@ const editTodo = () => {
   store.editTodos(todo, editText.value)
   todo.option1 = editText.value
   editText.value = ''
+  alert('수정이 완료되었습니다')
+  router.push({ name: 'HomeView' })
 }
 
 // select 값에 따른 데이터 바인딩

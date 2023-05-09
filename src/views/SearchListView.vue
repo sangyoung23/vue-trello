@@ -36,7 +36,11 @@ const router = useRouter()
 const text = ref('')
 
 const filteredTodos = computed(() => {
-  return store.todos.filter((item) => item.option1.includes(text.value))
+  // toLowerCase를 이용해서 대소문자 구분없이 검색 가능, trim으로 공백 제거
+  const searchValue = text.value.toLowerCase().trim()
+  return [...store.todos, ...store.doneTodos, ...store.doingTodos].filter((item) => {
+    return item.option1.toLowerCase().includes(searchValue)
+  })
 })
 
 const goDetail = (id, todo) => {

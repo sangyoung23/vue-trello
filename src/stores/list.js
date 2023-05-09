@@ -75,23 +75,30 @@ export const useTodoStore = defineStore({
         }
       }
     },
-    // 완료 상태를 담는 함수
-    doneAddTodo(todo) {
-      this.doneTodos.push({ ...todo })
-      const indexTodo = this.doingTodos.findIndex((item) => item.id === todo.id)
-
+    doneAddTodo (todo) {
+      // doingTodos에서 doneTodos로 옮겨갈 때 doingTodos 배열에서 현재 아이템을 찾는다.
+      const indexTodo = this.doingTodos.findIndex(item => item.id === todo.id)
+      console.log(indexTodo)
       if (indexTodo !== -1) {
+        // todos 배열에서 현재 아이템을 삭제
         this.doingTodos.splice(indexTodo, 1)
       }
+    
+      // doneTodos 배열에 현재 아이템을 추가
+      this.doneTodos.push({ ...todo })
     },
-    // 진행중인 상태를 담는 함수
-    doingAddTodo(todo) {
-      this.doingTodos.push({ ...todo })
-      const indexTodo = this.doneTodos.findIndex((item) => item.id === todo.id)
-
+    doingAddTodo (todo) {
+      // doneTodos에서 doingTodos로 옮겨갈 때 doneTodos 배열에서 현재 아이템을 찾는다.
+      const indexTodo = this.doneTodos.findIndex(item => item.id === todo.id)
+      console.log(indexTodo)
       if (indexTodo !== -1) {
+        // todos 배열에서 현재 아이템을 삭제
         this.doneTodos.splice(indexTodo, 1)
       }
+    
+      // doingTodos 배열에 현재 아이템을 추가
+      this.doingTodos.push({ ...todo })
     }
+    
   }
 })
